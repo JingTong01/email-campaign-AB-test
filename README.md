@@ -8,10 +8,7 @@ Analysis of a randomized e-mail marketing experiment with **64,000 customers** a
 
 ## Key results
 
-*To be filled in once the analysis is complete. Keep this to 3–4 bullets with numbers, for example:*
 
-- The men's e-mail raised the visit rate from **x.x% → x.x%** (+x.x pp, 95% CI […]); the women's e-mail by +x.x pp.
-- …
 - **Recommendation:** …
 
 ---
