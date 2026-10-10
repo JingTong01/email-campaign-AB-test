@@ -9,7 +9,7 @@ Analysis of a randomized e-mail marketing experiment with **64,000 customers** a
 ## Key results
 
 
-- **Recommendation:** …
+- **Recommendation:** ⏳
 
 ---
 
