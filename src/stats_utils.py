@@ -97,6 +97,25 @@ def bootstrap_mean_diff(y_treat: pd.Series, y_ctrl: pd.Series, n_boot: int = 500
             "p_value_boot": max(p_boot, 1 / n_boot)}
 
 
+def diff_in_means(y_treat: pd.Series, y_ctrl: pd.Series, alpha: float = 0.05) -> dict:
+    """Welch (unequal-variance) CI for a difference in means; also reports the SE."""
+    t, c = np.asarray(y_treat, float), np.asarray(y_ctrl, float)
+    diff = t.mean() - c.mean()
+    se = np.sqrt(t.var(ddof=1) / t.size + c.var(ddof=1) / c.size)
+    z_crit = stats.norm.ppf(1 - alpha / 2)
+    z = diff / se
+    return {"diff": diff, "se": se, "ci_low": diff - z_crit * se, "ci_high": diff + z_crit * se,
+            "ci_width": 2 * z_crit * se, "p_value": 2 * (1 - stats.norm.cdf(abs(z)))}
+
+
+def diff_of_lifts(lift_a: float, se_a: float, lift_b: float, se_b: float) -> dict:
+    """Is the lift in segment A different from the lift in segment B? (z-test on independent groups)"""
+    diff = lift_a - lift_b
+    se = np.sqrt(se_a ** 2 + se_b ** 2)
+    z = diff / se
+    return {"diff": diff, "se": se, "z": z, "p_value": 2 * (1 - stats.norm.cdf(abs(z)))}
+
+
 # ---------------------------------------------------------------------------
 # 5. Multiple comparisons
 # ---------------------------------------------------------------------------
@@ -124,6 +143,19 @@ def cuped_adjust(y: pd.Series, x_pre: pd.Series) -> pd.Series:
     """
     theta = np.cov(y, x_pre, ddof=1)[0, 1] / np.var(x_pre, ddof=1)
     return y - theta * (x_pre - x_pre.mean())
+
+
+def regression_adjust(y: pd.Series, X_pre: pd.DataFrame) -> pd.Series:
+    """Multi-covariate version of CUPED: remove the part of Y explained by pre-treatment covariates.
+
+    Y_adj = Y - (X - mean(X)) @ beta, with beta from OLS of Y on X (fitted on the pooled sample,
+    ignoring treatment, so the adjustment cannot absorb the treatment effect).
+    """
+    X = np.asarray(X_pre, float)
+    Xc = X - X.mean(axis=0)
+    yv = np.asarray(y, float)
+    beta, *_ = np.linalg.lstsq(Xc, yv - yv.mean(), rcond=None)
+    return pd.Series(yv - Xc @ beta, index=y.index)
 
 
 # ---------------------------------------------------------------------------

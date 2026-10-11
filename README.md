@@ -2,14 +2,18 @@
 
 Analysis of a randomized e-mail marketing experiment with **64,000 customers** and three arms: men's campaign, women's campaign and a no-email control group. The goal is to measure the **incremental** effect of each campaign on visits, conversions and spend, and to recommend **who should receive which e-mail**.
 
-> **Status:** 🚧 in progress. Notebook 01 (data checks and main effects) is done; notebooks 02 and 03 are next.
+**Recommendation:** send the **men's e-mail to all customers** (about **+$221 profit per 1,000 customers** vs. no e-mail). Segment-based targeting did not add measurable value. 📄 [One-page memo](reports/memo.pdf)
 
 ---
 
 ## Key results
 
-
-- **Recommendation:** ⏳
+- **Experiment health:** group sizes match the planned 1/3 split (SRM p = 0.90) and all pre-treatment covariates are balanced (max |SMD| = 0.014).
+- **Men's e-mail:** visit rate **10.6% → 18.3%** (+7.7 pp, 95% CI [7.0, 8.3]); conversion **0.57% → 1.25%**; **+$0.77 spend per customer** (bootstrap CI [0.48, 1.05]).
+- **Women's e-mail:** visit +4.5 pp, conversion +0.31 pp, +$0.42 spend per customer. Significant, but clearly weaker.
+- **Segments:** the men's e-mail lifted spend in every segment; the women's e-mail had no clear effect for men-only buyers, existing customers and phone customers.
+- **Targeting:** a rule learned from the data looked better in-sample (+$19 per 1,000) but **lost $27 per 1,000 on held-out data** (better in only 26% of 200 splits): overfitting. "Match past purchase" was indistinguishable from men's-to-all (+$3, CI [−51, +61]).
+- **Robustness:** sending breaks even up to ~$0.23 per e-mail (30% margin); CUPED and covariate adjustment left estimates unchanged (past spend explains < 0.5% of outcome variance).
 
 ---
 
@@ -31,22 +35,23 @@ Analysis of a randomized e-mail marketing experiment with **64,000 customers** a
 4. **Variance reduction (CUPED)**: past-year spend as the pre-period covariate, to tighten the confidence intervals.
 5. **Power and MDE**: which effects this sample can and cannot detect, and the sample size a follow-up test would need.
 6. **Heterogeneous effects**: which customer segments respond to which campaign.
-7. **Business recommendation**: targeting rules and incremental revenue per 1,000 e-mails, summarized in a one-page memo.
+7. **Business recommendation**: inverse-probability-weighted evaluation of sending rules, honest train/test validation of a learned rule, break-even and sensitivity analysis, summarized in a one-page memo.
 
 ## Repository structure
 
 ```
 ├── notebooks/
 │   ├── 01_data_checks_and_main_effects.ipynb   ✅
-│   ├── 02_cuped_power_segments.ipynb           ⏳
-│   └── 03_targeting_recommendation.ipynb       ⏳
+│   ├── 02_cuped_power_segments.ipynb           ✅
+│   └── 03_targeting_recommendation.ipynb       ✅
 ├── sql/
 │   └── 01_data_checks.sql        # data-quality and experiment-health queries
 ├── src/
 │   ├── data.py                   # download, schema validation, SQLite loading
-│   └── stats_utils.py            # SRM, balance, lift CIs, bootstrap, Holm, CUPED, power
+│   ├── stats_utils.py            # SRM, balance, lift CIs, bootstrap, Holm, CUPED, power
+│   └── policy.py                 # IPW evaluation of targeting rules
 ├── reports/
-│   └── memo.pdf                  # one-page summary for stakeholders  ⏳
+│   └── memo.pdf                  # one-page summary for stakeholders  ✅
 ├── data/                         # raw CSV (downloaded automatically, not committed)
 └── requirements.txt
 ```
