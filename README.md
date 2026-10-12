@@ -15,6 +15,14 @@ Analysis of a randomized e-mail marketing experiment with **64,000 customers** a
 - **Targeting:** a rule learned from the data looked better in-sample (+$19 per 1,000) but **lost $27 per 1,000 on held-out data** (better in only 26% of 200 splits): overfitting. "Match past purchase" was indistinguishable from men's-to-all (+$3, CI [−51, +61]).
 - **Robustness:** sending breaks even up to ~$0.23 per e-mail (30% margin); CUPED and covariate adjustment left estimates unchanged (past spend explains < 0.5% of outcome variance).
 
+## Power BI dashboard
+
+An interactive dashboard of the same results: KPI cards, conversion by test group, incremental lift vs. control, and a segment-level lift matrix with slicers. Every figure was cross-checked against the Python analysis ([reference values](powerbi/reference_values_from_python.csv)).
+
+![Overview](powerbi/screenshots/01_overview.png)
+![Segment lift](powerbi/screenshots/02_segment_lift.png)
+
+Files: [`email_ab_test_dashboard.pbix`](powerbi/email_ab_test_dashboard.pbix) · [DAX measures](powerbi/measures.dax)
 ---
 
 ## The experiment
