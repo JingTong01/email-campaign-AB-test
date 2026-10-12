@@ -1,0 +1,55 @@
+scope,level,test_group,customers,visit_rate_pct,conversion_rate_pct,spend_per_customer,visit_lift_pp,conversion_lift_pp,spend_lift,revenue_per_1000
+Overall,All customers,Control (no e-mail),21306,10.62,0.57,0.6528,,,,
+Overall,All customers,Men's e-mail,21307,18.28,1.25,1.4226,7.66,0.68,0.7698,769.8
+Overall,All customers,Women's e-mail,21387,15.14,0.88,1.0772,4.52,0.31,0.4244,424.4
+past_purchase,Both,Control (no e-mail),2149,18.05,0.93,1.1801,,,,
+past_purchase,Both,Men's e-mail,2181,31.5,2.43,3.0051,13.44,1.5,1.825,1825.0
+past_purchase,Both,Women's e-mail,2118,25.17,1.46,1.342,7.11,0.53,0.1619,161.9
+past_purchase,Mens only,Control (no e-mail),9638,9.98,0.55,0.6954,,,,
+past_purchase,Mens only,Men's e-mail,9558,16.9,1.15,1.3782,6.92,0.6,0.6827,682.7
+past_purchase,Mens only,Women's e-mail,9622,11.09,0.61,0.9738,1.11,0.06,0.2784,278.4
+past_purchase,Womens only,Control (no e-mail),9519,9.58,0.51,0.4906,,,,
+past_purchase,Womens only,Men's e-mail,9568,16.64,1.09,1.1063,7.06,0.57,0.6157,615.7
+past_purchase,Womens only,Women's e-mail,9647,16.98,1.03,1.1222,7.4,0.51,0.6316,631.6
+customer_type,Existing,Control (no e-mail),10611,13.37,0.77,0.9354,,,,
+customer_type,Existing,Men's e-mail,10621,21.16,1.39,1.5133,7.78,0.62,0.578,578.0
+customer_type,Existing,Women's e-mail,10624,17.39,0.87,1.0493,4.01,0.09,0.114,114.0
+customer_type,New,Control (no e-mail),10695,7.88,0.37,0.3724,,,,
+customer_type,New,Men's e-mail,10686,15.41,1.11,1.3325,7.53,0.74,0.96,960.0
+customer_type,New,Women's e-mail,10763,12.92,0.9,1.1047,5.04,0.53,0.7323,732.3
+channel,Multichannel,Control (no e-mail),2606,12.85,0.69,0.6157,,,,
+channel,Multichannel,Men's e-mail,2577,21.15,1.71,1.8249,8.29,1.02,1.2091,1209.1
+channel,Multichannel,Women's e-mail,2579,17.56,1.4,1.7733,4.71,0.71,1.1575,1157.5
+channel,Phone,Control (no e-mail),9327,8.72,0.54,0.6445,,,,
+channel,Phone,Men's e-mail,9240,16.28,1.08,1.2085,7.56,0.55,0.5641,564.1
+channel,Phone,Women's e-mail,9454,13.18,0.71,0.8769,4.46,0.17,0.2325,232.5
+channel,Web,Control (no e-mail),9373,11.89,0.58,0.6714,,,,
+channel,Web,Men's e-mail,9490,19.44,1.3,1.5218,7.56,0.72,0.8504,850.4
+channel,Web,Women's e-mail,9354,16.45,0.92,1.0877,4.57,0.34,0.4163,416.3
+zip_code,Rural,Control (no e-mail),3139,15.36,0.83,0.7671,,,,
+zip_code,Rural,Men's e-mail,3243,22.7,1.36,1.5226,7.34,0.53,0.7555,755.5
+zip_code,Rural,Women's e-mail,3181,18.26,1.16,1.282,2.91,0.33,0.5148,514.8
+zip_code,Surburban,Control (no e-mail),9625,9.9,0.5,0.6694,,,,
+zip_code,Surburban,Men's e-mail,9501,17.34,1.24,1.4733,7.43,0.74,0.8038,803.8
+zip_code,Surburban,Women's e-mail,9650,14.79,0.76,0.8466,4.89,0.26,0.1772,177.2
+zip_code,Urban,Control (no e-mail),8542,9.68,0.56,0.592,,,,
+zip_code,Urban,Men's e-mail,8563,17.65,1.23,1.3285,7.96,0.66,0.7365,736.5
+zip_code,Urban,Women's e-mail,8556,14.38,0.92,1.2611,4.69,0.36,0.6691,669.1
+past_purchase x customer_type,Both / Existing,Control (no e-mail),832,20.43,0.48,1.0741,,,,
+past_purchase x customer_type,Both / Existing,Men's e-mail,884,33.94,2.6,3.457,13.5,2.12,2.3829,2382.9
+past_purchase x customer_type,Both / Existing,Women's e-mail,821,24.6,0.97,0.7673,4.17,0.49,-0.3068,-306.8
+past_purchase x customer_type,Both / New,Control (no e-mail),1317,16.55,1.21,1.2472,,,,
+past_purchase x customer_type,Both / New,Men's e-mail,1297,29.84,2.31,2.6972,13.29,1.1,1.45,1450.0
+past_purchase x customer_type,Both / New,Women's e-mail,1297,25.52,1.77,1.7058,8.97,0.56,0.4587,458.7
+past_purchase x customer_type,Mens only / Existing,Control (no e-mail),4917,12.79,0.89,1.1172,,,,
+past_purchase x customer_type,Mens only / Existing,Men's e-mail,4864,20.54,1.27,1.286,7.75,0.38,0.1688,168.8
+past_purchase x customer_type,Mens only / Existing,Women's e-mail,4903,13.36,0.61,0.9893,0.57,-0.28,-0.1279,-127.9
+past_purchase x customer_type,Mens only / New,Control (no e-mail),4721,7.05,0.19,0.2561,,,,
+past_purchase x customer_type,Mens only / New,Men's e-mail,4694,13.12,1.02,1.4736,6.07,0.83,1.2175,1217.5
+past_purchase x customer_type,Mens only / New,Women's e-mail,4719,8.73,0.61,0.9577,1.68,0.42,0.7015,701.5
+past_purchase x customer_type,Womens only / Existing,Control (no e-mail),4862,12.75,0.7,0.7277,,,,
+past_purchase x customer_type,Womens only / Existing,Men's e-mail,4873,19.45,1.29,1.3876,6.7,0.59,0.6599,659.9
+past_purchase x customer_type,Womens only / Existing,Women's e-mail,4900,20.2,1.1,1.1566,7.45,0.4,0.4289,428.9
+past_purchase x customer_type,Womens only / New,Control (no e-mail),4657,6.27,0.32,0.243,,,,
+past_purchase x customer_type,Womens only / New,Men's e-mail,4695,13.72,0.87,0.8144,7.45,0.55,0.5714,571.4
+past_purchase x customer_type,Womens only / New,Women's e-mail,4747,13.65,0.95,1.0867,7.38,0.63,0.8437,843.7
