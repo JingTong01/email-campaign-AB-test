@@ -16,6 +16,16 @@ Analysis of a randomized e-mail marketing experiment with **64,000 customers** a
 - **Robustness:** sending breaks even up to ~$0.23 per e-mail (30% margin); CUPED and covariate adjustment left estimates unchanged (past spend explains < 0.5% of outcome variance).
 
 ---
+### Power BI dashboard
+
+The same results as an interactive two-page Power BI dashboard: KPI cards, conversion by test group, incremental lift vs. control, and a segment-level lift matrix with slicers, built with DAX measures. Every figure was cross-checked against the Python analysis ([reference values](powerbi/reference_values_from_python.csv)).
+
+![Power BI overview page](powerbi/screenshots/01_overview.png)
+
+![Power BI segment lift page](powerbi/screenshots/02_segment_lift.png)
+
+Files: [`email_ab_test_dashboard.pbix`](powerbi/email_ab_test_dashboard.pbix) · [DAX measures](powerbi/measures.dax)
+---
 
 ## The experiment
 
@@ -60,6 +70,7 @@ Analysis of a randomized e-mail marketing experiment with **64,000 customers** a
     │  ├──02_segment_lift.png
     │   └──03_overview_filtered_new.png
     ├──email_ab_test_dashboard.pbix
+    ├──measures.dax
     ├──prepare_powerbi_data.py
     └──reference_values_from_python.csv
 
