@@ -1,0 +1,58 @@
+// DAX measures for the e-mail A/B test dashboard
+// Table name: customers   (rename the imported table to "customers", or replace the name below)
+// Create each measure with: Modeling > New measure, then paste ONE block at a time.
+
+// ---------- Base measures ----------
+Customers = COUNTROWS ( customers )
+
+Visit Rate = AVERAGE ( customers[visit] )
+
+Conversion Rate = AVERAGE ( customers[conversion] )
+
+Spend per Customer = AVERAGE ( customers[spend] )
+
+// ---------- Control-group baselines ----------
+// CALCULATE replaces only the filter on test_group, so segment slicers (channel, past purchase, ...)
+// still apply: the lift is always "e-mail vs. control WITHIN the selected segment".
+Control Visit Rate =
+CALCULATE ( [Visit Rate], customers[test_group] = "Control (no e-mail)" )
+
+Control Conversion Rate =
+CALCULATE ( [Conversion Rate], customers[test_group] = "Control (no e-mail)" )
+
+Control Spend per Customer =
+CALCULATE ( [Spend per Customer], customers[test_group] = "Control (no e-mail)" )
+
+// ---------- Lift vs. control (blank for the control group itself) ----------
+Visit Lift (pp) =
+IF (
+    SELECTEDVALUE ( customers[test_group] ) = "Control (no e-mail)",
+    BLANK (),
+    ( [Visit Rate] - [Control Visit Rate] ) * 100
+)
+
+Conversion Lift (pp) =
+IF (
+    SELECTEDVALUE ( customers[test_group] ) = "Control (no e-mail)",
+    BLANK (),
+    ( [Conversion Rate] - [Control Conversion Rate] ) * 100
+)
+
+Spend Lift =
+IF (
+    SELECTEDVALUE ( customers[test_group] ) = "Control (no e-mail)",
+    BLANK (),
+    [Spend per Customer] - [Control Spend per Customer]
+)
+
+Incremental Revenue per 1,000 = [Spend Lift] * 1000
+
+// ---------- KPI cards (fixed to the men's e-mail, the recommended campaign) ----------
+KPI Men Conversion Lift (pp) =
+CALCULATE ( [Conversion Lift (pp)], customers[test_group] = "Men's e-mail" )
+
+KPI Men Revenue per 1,000 =
+CALCULATE ( [Incremental Revenue per 1,000], customers[test_group] = "Men's e-mail" )
+
+KPI Women Revenue per 1,000 =
+CALCULATE ( [Incremental Revenue per 1,000], customers[test_group] = "Women's e-mail" )
